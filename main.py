@@ -42,10 +42,10 @@ while game_is_on:
         game_is_on = False
         score_board.game_over()
 
-    # for segment in snake.segments[1::]:
-    #     if snake.head.distance(segment) < 10:
-    #         game_is_on = False
-    #         score_board.game_over()
+    for segment in snake.segments[1::]:
+        if snake.head.distance(segment) < 10:
+            game_is_on = False
+            score_board.game_over()
     # if head colid any segment touch in the tail
 
 screen.exitonclick()
