@@ -1,7 +1,7 @@
 from turtle import Screen
 import time
 from snake import Snake
-
+from food import Food
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
@@ -12,6 +12,7 @@ starting_position = [(0, 0), (-20, 0), (-40, 0)]
 segments = []
 
 snake = Snake()
+food = Food()
 
 screen.listen()
 
@@ -28,6 +29,8 @@ while game_is_on:
     time.sleep(0.15)
     snake.move()
 # segment means each object that we are created before
-
+# detect coalition with Food
+    if snake.head.distance(food) < 15:
+        food.refresh()
 
 screen.exitonclick()
