@@ -3,6 +3,7 @@ import time
 from snake import Snake
 from food import Food
 from scoreborad import ScoreBoard
+
 screen = Screen()
 
 screen.setup(width=600, height=600)
@@ -30,10 +31,21 @@ while game_is_on:
     # all segment goes move forward then only to refresh
     time.sleep(0.15)
     snake.move()
-# segment means each object that we are created before
-# detect coalition with Food
+    # segment means each object that we are created before
+    # detect coalition with Food
     if snake.head.distance(food) < 15:
         food.refresh()
+        snake.extend()
         score_board.increase_score()
+    # Dect collition
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        game_is_on = False
+        score_board.game_over()
+
+    # for segment in snake.segments[1::]:
+    #     if snake.head.distance(segment) < 10:
+    #         game_is_on = False
+    #         score_board.game_over()
+    # if head colid any segment touch in the tail
 
 screen.exitonclick()
