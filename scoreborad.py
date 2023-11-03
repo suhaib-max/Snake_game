@@ -1,7 +1,7 @@
 import turtle
-from turtle import Turtle
-
-FONT = ("Courier", 24, "normal")
+from turtle import Turtle,Screen
+screen = Screen()
+FONT = ("LOUNGE ITALIC ", 24, "normal")
 
 
 class ScoreBoard(Turtle):
@@ -12,18 +12,23 @@ class ScoreBoard(Turtle):
         self.hideturtle()
         self.goto(0, 260)
         self.score = 0
-        self.write(f"Score: {self.score}", False, align="center", font=FONT)
+        self.highscore = 0
+        self.update_scoreboard()
 
     def update_scoreboard(self):
-        self.write(f"Score: {self.score}", False, align="center", font=FONT)
+        self.clear()
+        self.write(f"Score: {self.score} High Score: {self.highscore}", False, align="center", font=FONT)
 
 
     def increase_score(self):
         self.score += 1 #first it will update the score
-        self.clear()
         self.update_scoreboard()
-
-    def game_over(self):
-               self.goto(0, 0)
-               self.write("Game over", align="center", font=FONT)
+    def reset(self):
+        if self.score > self.highscore:
+            self.highscore = self.score
+        self.score = 0
+        self.update_scoreboard()
+    # def game_over(self):
+    #            self.goto(0, 0)
+    #            self.write("Game over", align="center", font=FONT)
 
